@@ -6,9 +6,9 @@ import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 
-import vam.gui.SinComponent;
+import vam.gui.VamComponent;
 
-public class Button extends SinComponent {
+public class Button extends VamComponent {
 
 	private int x, y, width, height;
 	private Color backgroundColor, foreGroundColor, borderColor;

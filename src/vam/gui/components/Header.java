@@ -10,10 +10,10 @@ import java.awt.event.MouseEvent;
 import javax.swing.JFrame;
 
 import vam.VAM;
-import vam.gui.SinComponent;
+import vam.gui.VamComponent;
 import vam.gui.SinGui;
 
-public class Header extends SinComponent {
+public class Header extends VamComponent {
 
 	public static final Color BACKGROUND = new Color(54, 73, 90);
 	public static final Color BUTTONCOLOR = new Color(95, 113, 125);
@@ -73,9 +73,18 @@ public class Header extends SinComponent {
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		dragStart.x = e.getX();
-		dragStart.y = e.getY();
+		if(e.getX() > 0 && e.getX() < SinGui.WIDTH && e.getY() > 0 && e.getY() < height ){
+			dragStart.x = e.getX();
+			dragStart.y = e.getY();
+		}
 		super.mousePressed(e);
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		dragStart.x = -1;
+		dragStart.y = -1;
+		super.mouseReleased(e);
 	}
 
 	@Override
@@ -84,5 +93,4 @@ public class Header extends SinComponent {
 			VAM.getGui().frame.setLocation(e.getXOnScreen()-dragStart.x, e.getYOnScreen()-dragStart.y);
 		super.mouseDragged(e);
 	}
-
 }

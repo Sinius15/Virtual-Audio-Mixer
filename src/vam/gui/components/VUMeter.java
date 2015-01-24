@@ -5,9 +5,9 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 
 import vam.Util;
-import vam.gui.SinComponent;
+import vam.gui.VamComponent;
 
-public class VUMeter extends SinComponent {
+public class VUMeter extends VamComponent {
 
 	public static Color background = new Color(0, 0, 0);
 	public static Color blueColor = new Color(136, 176, 188);
@@ -44,7 +44,6 @@ public class VUMeter extends SinComponent {
 		g.setColor(greenColor);
 		height = (int) Util.constraint(height - this.bounds.height*greenFromPersentage, 0, (int) (bounds.height*greenFromPersentage));
 		g.fillRect(bounds.x, (int) (bounds.y+(bounds.height*(1-greenFromPersentage))-height), bounds.width, height);
-
 
 		super.draw(g);
 	}

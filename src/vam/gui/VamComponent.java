@@ -4,73 +4,81 @@ import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.awt.event.MouseWheelEvent;
+import java.awt.event.MouseWheelListener;
 import java.util.ArrayList;
 
-public abstract class SinComponent implements MouseListener, MouseMotionListener{
+public abstract class VamComponent implements MouseListener, MouseMotionListener, MouseWheelListener{
 
-	public ArrayList<SinComponent> childeren = new ArrayList<>();
+	public ArrayList<VamComponent> childeren = new ArrayList<>();
 
 	public void draw(Graphics g){
-		for(SinComponent c : childeren){
+		for(VamComponent c : childeren){
 			c.draw(g);
 		}
 	};
 
-	void addComponent(SinComponent comp){
+	void addComponent(VamComponent comp){
 		childeren.add(comp);
 	}
 
-	void removeComponent(SinComponent comp){
+	void removeComponent(VamComponent comp){
 		childeren.remove(comp);
 	}
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		for(SinComponent c : childeren){
+		for(VamComponent c : childeren){
 			c.mouseClicked(e);
 		}
 	}
 
 	@Override
 	public void mouseDragged(MouseEvent e) {
-		for(SinComponent c : childeren){
+		for(VamComponent c : childeren){
 			c.mouseDragged(e);
 		}
 	}
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
-		for(SinComponent c : childeren){
+		for(VamComponent c : childeren){
 			c.mouseEntered(e);
 		}
 	}
 
 	@Override
 	public void mouseExited(MouseEvent e) {
-		for(SinComponent c : childeren){
+		for(VamComponent c : childeren){
 			c.mouseExited(e);
 		}
 	}
 
 	@Override
 	public void mouseMoved(MouseEvent e) {
-		for(SinComponent c : childeren){
+		for(VamComponent c : childeren){
 			c.mouseMoved(e);
 		}
 	}
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		for(SinComponent c : childeren){
+		for(VamComponent c : childeren){
 			c.mousePressed(e);
 		}
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		for(SinComponent c : childeren){
+		for(VamComponent c : childeren){
 			c.mouseReleased(e);
 		}
 	}
 
+	@Override
+	public void mouseWheelMoved(MouseWheelEvent e) {
+		for(VamComponent c : childeren){
+			c.mouseWheelMoved(e);
+		}
+	}
 }

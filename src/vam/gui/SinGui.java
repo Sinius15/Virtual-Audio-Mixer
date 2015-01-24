@@ -19,7 +19,7 @@ public class SinGui extends JPanel implements MouseListener, MouseMotionListener
 	public static final Color BACKGROUND = new Color(44, 61, 77);
 
 	public JFrame frame;
-	public List<SinComponent> comps = new ArrayList<>();
+	public List<VamComponent> comps = new ArrayList<>();
 
 	public SinGui() {
 		addMouseListener(this);
@@ -39,11 +39,11 @@ public class SinGui extends JPanel implements MouseListener, MouseMotionListener
 
 	}
 
-	public void addSinComponent(SinComponent c){
+	public void addSinComponent(VamComponent c){
 		comps.add(c);
 	}
 
-	public void removeSinComponent(SinComponent c){
+	public void removeSinComponent(VamComponent c){
 		comps.remove(c);
 	}
 	
@@ -55,14 +55,14 @@ public class SinGui extends JPanel implements MouseListener, MouseMotionListener
 	public void paintComponent(Graphics g) {
 		g.setColor(BACKGROUND);
 		g.fillRect(0, 0, WIDTH, HEIGHT);
-		for(SinComponent c : comps){
+		for(VamComponent c : comps){
 			c.draw(g);
 		}
 	}
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		for(SinComponent c : comps){
+		for(VamComponent c : comps){
 			c.mouseClicked(e);
 		}
 
@@ -71,42 +71,42 @@ public class SinGui extends JPanel implements MouseListener, MouseMotionListener
 
 	@Override
 	public void mouseDragged(MouseEvent e) {
-		for(SinComponent c : comps){
+		for(VamComponent c : comps){
 			c.mouseDragged(e);
 		}
 	}
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
-		for(SinComponent c : comps){
+		for(VamComponent c : comps){
 			c.mouseEntered(e);
 		}
 	}
 
 	@Override
 	public void mouseExited(MouseEvent e) {
-		for(SinComponent c : comps){
+		for(VamComponent c : comps){
 			c.mouseExited(e);
 		}
 	}
 
 	@Override
 	public void mouseMoved(MouseEvent e) {
-		for(SinComponent c : comps){
+		for(VamComponent c : comps){
 			c.mouseMoved(e);
 		}
 	}
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		for(SinComponent c : comps){
+		for(VamComponent c : comps){
 			c.mousePressed(e);
 		}
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		for(SinComponent c : comps){
+		for(VamComponent c : comps){
 			c.mouseReleased(e);
 		}
 	}
