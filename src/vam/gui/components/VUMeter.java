@@ -80,6 +80,11 @@ public class VUMeter extends VamComponent {
 		this.bounds = bounds;
 	}
 
+	@Override
+	public String getStatus() {
+		return "VU Meter. Value: " + db;
+	}
+
 
 
 }

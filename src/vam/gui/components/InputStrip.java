@@ -5,6 +5,7 @@ import java.awt.Rectangle;
 
 import vam.VAM;
 import vam.core.AsioSoundCard;
+import vam.gui.VamComponent;
 
 public class InputStrip extends Strip {
 
@@ -33,7 +34,8 @@ public class InputStrip extends Strip {
 
 	@Override
 	public void draw(Graphics g) {
-		meter.setDB(card.getPreFaderVolume());
+		if(card != null)
+			meter.setDB(card.getPreFaderVolume());
 		super.draw(g);
 	}
 
@@ -48,6 +50,22 @@ public class InputStrip extends Strip {
 	}
 	public void setY(int y) {
 		this.y = y;
+	}
+
+
+	@Override
+	public String getStatus() {
+		for(VamComponent c : childeren){
+			if(c.getBounds().contains(VAM.getGui().mouseX, VAM.getGui().mouseY)){
+				return c.getStatus();
+			}
+		}
+		return null;
+	}
+
+	@Override
+	public Rectangle getBounds() {
+		return new Rectangle(x, y, width, height);
 	}
 
 

@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Point;
+import java.awt.Rectangle;
 import java.awt.event.MouseEvent;
 
 import javax.swing.JFrame;
@@ -92,5 +93,15 @@ public class Header extends VamComponent {
 		if(dragStart.x != -1)
 			VAM.getGui().frame.setLocation(e.getXOnScreen()-dragStart.x, e.getYOnScreen()-dragStart.y);
 		super.mouseDragged(e);
+	}
+
+	@Override
+	public String getStatus() {
+		return "Drag to move the window.";
+	}
+
+	@Override
+	public Rectangle getBounds() {
+		return new Rectangle(0, 0, SinGui.WIDTH, height);
 	}
 }

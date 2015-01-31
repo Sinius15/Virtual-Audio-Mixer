@@ -4,11 +4,12 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
+import java.awt.Rectangle;
+import java.awt.event.MouseWheelEvent;
 import java.awt.geom.Rectangle2D;
 
 import vam.Util;
 import vam.VAM;
-import vam.gui.SinGui;
 import vam.gui.VamComponent;
 
 public class FaderButton extends VamComponent{
@@ -18,7 +19,7 @@ public class FaderButton extends VamComponent{
 						circleColor = new Color(65, 153, 108),
 						txtColor = new Color(65, 153, 108);
 
-	private int x, y, radius;
+	private int x, y, radius, pixWidth, pixHeight;
 	private int min = -60, max = 60;
 	private String txt;
 
@@ -30,13 +31,15 @@ public class FaderButton extends VamComponent{
 		this.y = y;
 		this.setTxt(txt);
 		this.radius = radius;
+		this.pixWidth = radius;
+		this.pixHeight = radius+20;
 	}
 
 	@Override
 	public void draw(Graphics g) {
 		//circle
 		g.setColor(centerActivatedColor);
-		g.fillArc(x, y, radius, radius, 0, value);
+		g.fillArc(x, y, radius, radius, 90, (int) -Util.map(value, min, max, -355, 355));
 
 		//centre
 		g.setColor(activated ? centerActivatedColor : centerDeactivatedColor);
@@ -54,9 +57,28 @@ public class FaderButton extends VamComponent{
 		g.drawString(txt, txtX, txtY);
 
 		g.setColor(Color.red);
-		g.drawRect(x, y, radius, radius);
+		g.drawRect(x, y, pixWidth, pixHeight);
 
 		super.draw(g);
+	}
+
+	@Override
+	public void mouseWheelMoved(MouseWheelEvent e) {
+		if(new Rectangle(x, y, radius, radius).contains(e.getX(), e.getY())){
+			value += e.getWheelRotation()*-8;
+			value = (int) Util.constraint(value, min, max);
+		}
+		super.mouseWheelMoved(e);
+	}
+
+	@Override
+	public String getStatus() {
+		return "Fader Button. Selected value: " + value;
+	}
+
+	@Override
+	public Rectangle getBounds() {
+		return new Rectangle(max, y, pixWidth, pixHeight);
 	}
 
 	/**
@@ -116,20 +138,6 @@ public class FaderButton extends VamComponent{
 	}
 
 	/**
-	 * @return the radius
-	 */
-	public int getRadius() {
-		return radius;
-	}
-
-	/**
-	 * @param radius the radius to set
-	 */
-	public void setRadius(int radius) {
-		this.radius = radius;
-	}
-
-	/**
 	 * @return the value
 	 */
 	public int getValue() {
@@ -170,8 +178,5 @@ public class FaderButton extends VamComponent{
 	public void setActivated(boolean activated) {
 		this.activated = activated;
 	}
-
-
-
 
 }

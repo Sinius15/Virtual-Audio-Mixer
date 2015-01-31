@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
+import java.awt.Rectangle;
 import java.awt.event.MouseEvent;
 
 import vam.gui.VamComponent;
@@ -13,6 +14,7 @@ public class Button extends VamComponent {
 	private int x, y, width, height;
 	private Color backgroundColor, foreGroundColor, borderColor;
 	private String txt;
+	private String description = null;
 	private Font font;
 
 	private ButtonAction action;
@@ -52,6 +54,16 @@ public class Button extends VamComponent {
 			action.trigger();
 
 		super.mouseReleased(e);
+	}
+
+	@Override
+	public String getStatus() {
+		return description == null ? txt : description;
+	}
+
+	@Override
+	public Rectangle getBounds() {
+		return new Rectangle(x, y, width, height);
 	}
 
 	public interface ButtonAction {
@@ -177,5 +189,21 @@ public class Button extends VamComponent {
 	public Font getFont() {
 		return font;
 	}
+
+	/**
+	 * @return the description
+	 */
+	public String getDescription() {
+		return description;
+	}
+
+	/**
+	 * @param description the description to set
+	 */
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+
 
 }

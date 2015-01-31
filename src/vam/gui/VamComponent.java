@@ -1,6 +1,7 @@
 package vam.gui;
 
 import java.awt.Graphics;
+import java.awt.Rectangle;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
@@ -11,6 +12,10 @@ import java.util.ArrayList;
 public abstract class VamComponent implements MouseListener, MouseMotionListener, MouseWheelListener{
 
 	public ArrayList<VamComponent> childeren = new ArrayList<>();
+
+	public abstract String getStatus();
+
+	public abstract Rectangle getBounds();
 
 	public void draw(Graphics g){
 		for(VamComponent c : childeren){

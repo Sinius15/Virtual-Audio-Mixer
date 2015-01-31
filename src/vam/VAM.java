@@ -56,7 +56,7 @@ public class VAM {
 			}
 		}
 	};
-
+	
 	public void closeApplication(){
 		gui.frame.dispose();
 		audio.close();
